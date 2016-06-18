@@ -5,7 +5,7 @@
 // Copyright (c) 2013 Stephen Mathieson
 // MIT licensed
 //
-
+#define _GNU_SOURCE
 #include <stdlib.h>
 #include <string.h>
 #include "occurrences.h"
@@ -15,7 +15,7 @@
  */
 
 size_t
-occurrences(const char *needle, const char *haystack) {
+occurrences(const char *needle, const char *haystack, int ignore_case) {
   if (NULL == needle || NULL == haystack) return -1;
 
   char *pos = (char *)haystack;
@@ -23,10 +23,17 @@ occurrences(const char *needle, const char *haystack) {
   size_t l = strlen(needle);
   if (l == 0) return 0;
 
-  while ((pos = strstr(pos, needle))) {
-    pos += l;
-    i++;
-  }
+  if(ignore_case)
+    while ((pos = strcasestr(pos, needle))) {
+      pos += l;
+      i++;
+    }
+  else
+    while ((pos = strstr(pos, needle))) {
+      pos += l;
+      i++;
+    }
+
 
   return i;
 }

@@ -10,6 +10,6 @@
 #define OCCURRENCES_H 1
 
 size_t
-occurrences(const char *, const char *);
+occurrences(const char *, const char *, int);
 
 #endif

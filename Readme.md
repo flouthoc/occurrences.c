@@ -11,9 +11,10 @@
 
 ## API
 
-### `size_t occurrences(const char *needle, const char *haystack)`
-
+### `size_t occurrences(const char *needle, const char *haystack, int ignore-case)`
+  
   Get the number of occurrences of `needle` in `haystack`
+  occurrence(needle, haystack, 1) if you want to ignore case otherwise occurrence(needle, haystack, 0)
 
 ## License
 
